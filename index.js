@@ -31,8 +31,8 @@ function checkCollision(rock) {
     // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
     const dodgerRightEdge = dodgerLeftEdge + 40;
 
-    const rockLeftEdge = positionToInteger(rock.style.left)
-
+    const rockLeftEdge = positionToInteger(rock.style.left) //an in depth review of position to integer!!!
+                                                           //remember
     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
     const rockRightEdge = rockLeftEdge + 20;
 
@@ -83,21 +83,17 @@ ROCKS.push(rock);
      * If a rock collides with the DODGER,
      * we should call endGame()
      */
-rock.style.top = `${top += 2}px`;
-if (top < GAME_HEIGHT) {
-  window.requestAnimationFrame(moveRock);
-  if(checkCollision(rock) === true) {
-    endGame();
-  }
+     rock.style.top = `${top += 2}px`;
+     if (top < GAME_HEIGHT) {
+       window.requestAnimationFrame(moveRock);
+       if(checkCollision(rock) === true) {
+         endGame();
+     }
+   }
+     if (top >= GAME_HEIGHT) {
+       ROCKS[0].remove();
+   }
 }
-if (top >= GAME_HEIGHT) {
-  ROCKS[0].remove();
-}
-}
-    /**
-     * Otherwise, if the rock hasn't reached the bottom of
-     * the GAME, we want to move it again.
-     */
 moveRock();
     /**
      * But if the rock *has* reached the bottom of the GAME,
@@ -128,8 +124,7 @@ function endGame() {
   });
 //forEach is in format--- array.forEach(function functionName(currentValue))
   window.removeEventListener('keydown', moveDodger);
-  window.alert("YOU LOSE!");
-
+  return alert("YOU LOSE!");
 }
 
 function moveDodger(e) {
